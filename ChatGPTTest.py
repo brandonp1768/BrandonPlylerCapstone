@@ -11,8 +11,8 @@ completion = client.chat.completions.create(
     messages=[
         {
             "role": "user",
-            "content": "Say this is a test",
+            "content": "How could I use chatGpt for QA testing in software?",
         },
     ],
 )
-print(completion.choices[0].message.content)
+print(completion.choices[0].message.content) 
