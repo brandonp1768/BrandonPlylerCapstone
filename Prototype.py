@@ -2,6 +2,7 @@ from openai import OpenAI
 import os
 from dotenv import load_dotenv
 import textwrap
+from ChatClasses.QAAssistant import QAAssistant
 
 load_dotenv()
 
@@ -30,30 +31,14 @@ def PrintResponse(response_content: str):
 
 
 def main(): 
-    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    filePath = os.path.join(script_dir, 'Testing.py')
-
+    filePath = os.path.join(script_dir, 'Testing\\Testing.py')
     fileContent : str = ReadFile(filePath)
 
-    response = client.chat.completions.create(
-        model="gpt-4",
-        messages=[
-            {
-                "role": "system",
-                "content": "You are a knowledgeable coding assistant",
-            },
-            {
-                "role": "user",
-                "content": FormatPrompt(fileContent)
-            }
-        ],
-    ) 
+    Assistant = QAAssistant()
 
-    PrintResponse(response.choices[0].message.content.strip())
-
-    totalTokens = response.usage.total_tokens
-    print(f"\nTokens used: {totalTokens}")
+    response = Assistant.CodeExplanation(fileContent)
+    
+    PrintResponse(response)
 
 main()
