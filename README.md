@@ -1,0 +1,1 @@
+To run this program in its current state, you have to enter the command "python -m Testing.Prototype" in a terminal

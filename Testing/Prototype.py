@@ -32,7 +32,7 @@ def PrintResponse(response_content: str):
 
 def main(): 
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    filePath = os.path.join(script_dir, 'Testing\\Testing.py')
+    filePath = os.path.join(script_dir, 'Testing.py')
     fileContent : str = ReadFile(filePath)
 
     Assistant = QAAssistant()
