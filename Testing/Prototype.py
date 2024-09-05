@@ -1,10 +1,7 @@
 from openai import OpenAI
 import os
-from dotenv import load_dotenv
 import textwrap
 from ChatClasses.QAAssistant import QAAssistant
-
-load_dotenv()
 
 def ReadFile(filePath : str):
     with open(filePath, 'r') as file:
