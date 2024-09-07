@@ -21,8 +21,8 @@ Strictly just a formatter for the terminal
 '''
 def PrintResponse(response_content: str):
     wrapper = textwrap.TextWrapper(width=80)  
-    print("\nResponse Content:")
-    print("\n".join(wrapper.wrap(response_content)))
+    print("\nResponse Content:\n")
+    print("\n\n".join(wrapper.wrap(response_content)))
 
     print("\n" + "-"*80 + "\n")
 
