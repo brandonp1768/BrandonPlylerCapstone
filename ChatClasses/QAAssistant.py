@@ -14,7 +14,7 @@ class QAAssistant:
         if not hasattr(self, 'initialized'):
             load_dotenv()
             self.client = OpenAI(api_key=os.getenv("OPEN_API_KEY"))
-            # Think about how to add the creation of the chat here eventually
+            # Think about how to add the creation of the chat here eventually so we can send messages to the chat instead of making a new chat each time (or putting previous answers back into each answer)
             self.initialized = True
     
     def FormatPrompt(fileContent : str):
