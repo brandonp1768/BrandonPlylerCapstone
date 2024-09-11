@@ -36,6 +36,6 @@ def main():
 
     response = Assistant.TestingCases(fileContent)
     
-    PrintResponse(response)
+    print(response)
 
 main()
