@@ -34,7 +34,7 @@ def main():
 
     Assistant = QAAssistant()
 
-    response = Assistant.TestingCases(fileContent)
+    response = Assistant.EdgeCases(fileContent)
     
     print(response)
 
