@@ -34,8 +34,15 @@ def main():
 
     Assistant = QAAssistant()
 
-    response = Assistant.EdgeCases(fileContent)
+    response = Assistant.Testing(message = "Whats this conversation about?")
     
     print(response)
+
+    cache = []
+    cache.append(response)
+
+    print(Assistant.Testing(message = "what was your previous response?"))
+
+    
 
 main()

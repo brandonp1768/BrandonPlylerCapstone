@@ -2,7 +2,7 @@ from openai import OpenAI
 import os
 from dotenv import load_dotenv
 
-class QAAssistant:
+class QAAssistant:  # Feed data with the system role in the prompt, for conversations cache the responses in a list and feed it in through the system role
     _instance = None
 
     def __new__(cls, *args, **kwargs):
@@ -102,6 +102,50 @@ class QAAssistant:
                 model="gpt-3.5-turbo",
                 messages=[
                     {"role": "system", "content": "You are a knowledgeable coding quality assurance assistant"},
+                    {"role": "user", "content": prompt}
+                ]
+            )
+        
+        stringResponse = response.choices[0].message.content.strip()
+
+        print(f"\nTokens used: {response.usage.total_tokens}\n\n")
+
+        return stringResponse
+    
+    def Testing(self : str, message : str, cache = None):
+        conversation = [
+            "Alice: Hey, Bob! How’s it going?",
+            "Bob: Hi Alice! I’m doing well, thanks. How about you?",
+            "Alice: I’m good too. Got any plans for the weekend?",
+            "Bob: Actually, yes. I’m thinking of going hiking. How about you?",
+            "Alice: That sounds fun! I’m planning to visit a museum.",
+            "Bob: Nice! Which museum are you thinking of?",
+            "Alice: The art museum downtown. I’ve heard they have a new exhibition.",
+            "Bob: That’s exciting! What’s the exhibition about?",
+            "Alice: It’s a collection of modern art. I’m really looking forward to it.",
+            "Bob: Sounds interesting. I’ve always enjoyed modern art.",
+            "Alice: Me too! It’s so vibrant and expressive.",
+            "Bob: Absolutely. Do you like hiking as well?",
+            "Alice: I do, but I haven’t been in a while. I should try to get back into it.",
+            "Bob: You should! It’s a great way to unwind and enjoy nature.",
+            "Alice: I agree. Maybe I’ll join you next time.",
+            "Bob: That would be awesome! We could plan a hike together.",
+            "Alice: Definitely. Let’s make it happen.",
+            "Bob: Perfect! I’ll look up some good trails for us.",
+            "Alice: Great. I’ll check out the museum’s schedule for their tours.",
+            "Bob: Sounds like a plan. Have a great time at the museum!",
+            "Alice: Thanks, Bob! Enjoy your hike and stay safe."
+        ]
+
+        prompt = (
+            f"{message}"
+        )
+
+        response = self.chat = self.client.chat.completions.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {"role": "system", "content": f"{conversation}"},
+                    {"role": "system", "content": f"Your Previous response: \n\n{cache}"},
                     {"role": "user", "content": prompt}
                 ]
             )
