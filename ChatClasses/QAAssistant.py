@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 
 class QAAssistant:  # Feed data with the system role in the prompt, for conversations cache the responses in a list and feed it in through the system role
-    _instance = None
+    _instance = None # Think about putting code through the system role instead of a prompt
 
     def __new__(cls, *args, **kwargs):
         if cls._instance is None:
