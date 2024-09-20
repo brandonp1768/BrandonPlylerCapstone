@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QA Assistant (Powered By ChatGPT)</title>
+    <link href="{{ url_for('static', filename='css/style.css')}}" rel="stylesheet"/>
+</head>
+<body>
+    <h1>QA Assistant (Powered By ChatGPT)</h1>
+    <p>Upload a file:</p>
+    
+    <form action="{{ url_for('upload_file') }}" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".txt, .pdf, .doc, .docx, .py" required>
+        <button type="submit">Upload</button>
+    </form>
+
+    <div id="messages">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul>
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <p>Future text box functionality coming soon!</p>
+
+    <style>
+        #messages {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            width: 600px;  
+            height: 300px; 
+            overflow-y: auto; 
+        }
+        .Success {
+            color: green;
+        }
+        .Error {
+            color: red;
+        }
+    </style>
+
+</body>
+</html>
