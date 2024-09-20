@@ -1,8 +1,12 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from ChatClasses.QAAssistant import QAAssistant
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = 'G3n3r@t3d$ecreTKeY!XyZ12345'  # Move this to the environment variables
+app.secret_key = os.getenv("FLASK_SECRET_KEY")  # Move this to the environment variables
 
 @app.route('/')
 @app.route('/index')
