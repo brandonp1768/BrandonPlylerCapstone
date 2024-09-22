@@ -32,7 +32,7 @@ def upload_file():
 
     Assistant = QAAssistant()
 
-    response = Assistant.EdgeCases(fileContent)
+    response = Assistant.TestingCases(fileContent)
 
     flash(f"{response}", "Success")
     return redirect(url_for('index'))
