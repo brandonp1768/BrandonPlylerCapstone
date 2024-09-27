@@ -16,7 +16,6 @@ class QAAssistant:  # Feed data with the system role in the prompt, for conversa
             self.client = OpenAI(api_key=os.getenv("OPEN_API_KEY"))
             # Think about how to add the creation of the chat here eventually so we can send messages to the chat instead of making a new chat each time (or putting previous answers back into each answer)
             self.initialized = True
-            self.previousMessages = []
     
     def FormatPrompt(fileContent : str):
         prompt = (
@@ -112,7 +111,7 @@ class QAAssistant:  # Feed data with the system role in the prompt, for conversa
 
         return stringResponse
     
-    def Testing(self : str, message : str, cache = None):
+    def Testing(self : str, message : str, cache : list = None):
         conversation = [
             "Alice: Hey, Bob! How’s it going?",
             "Bob: Hi Alice! I’m doing well, thanks. How about you?",
