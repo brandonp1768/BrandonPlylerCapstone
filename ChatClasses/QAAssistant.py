@@ -52,13 +52,13 @@ class QAAssistant:  # Feed data with the system role in the prompt, for conversa
         prompt = (
             "I have the following code: \n\n"
             f"{fileContent}\n\n"
-            "List me off some testing cases for this program"
+            "List me off some testing cases for this program, list only the test cases"
         )
 
         response = self.chat = self.client.chat.completions.create(
                 model="gpt-3.5-turbo",
                 messages=[
-                    {"role": "system", "content": "You are a knowledgeable coding quality assurance assistant"},
+                    {"role": "system", "content": "You are a knowledgeable coding quality assurance test case generator"},
                     {"role": "user", "content": prompt}
                 ]
             )
@@ -67,7 +67,15 @@ class QAAssistant:  # Feed data with the system role in the prompt, for conversa
 
         print(f"\nTokens used: {response.usage.total_tokens}\n\n")
 
-        return stringResponse
+        test_cases = stringResponse.splitlines()
+
+        html_response = "<ul>"
+
+        for case in test_cases:
+            html_response += f"<li>{case}<li>"
+        html_response += "<ul>"
+
+        return html_response
 
     def FailingCases(self, fileContent : str):
         prompt = (
