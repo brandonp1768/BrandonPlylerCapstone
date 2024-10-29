@@ -56,7 +56,7 @@ class QAAssistant:  # Feed data with the system role in the prompt, for conversa
         )
 
         response = self.chat = self.client.chat.completions.create(
-                model="gpt-3.5-turbo",
+                model="gpt-4",
                 messages=[
                     {"role": "system", "content": "You are a knowledgeable coding quality assurance test case generator"},
                     {"role": "user", "content": prompt}
